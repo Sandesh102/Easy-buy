@@ -1,0 +1,113 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+
+  /* Header styling */
+  header {
+    background-color: #800080; /* Purple color */
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative; /* For positioning the logo */
+  }
+
+  header img {
+      position: absolute;
+      top: 50%;
+      left: 20px;
+      transform: translateY(-50%);
+      height: 50px; /* Adjust logo height */
+      width: 50px; /* Ensure the width and height are equal */
+      border-radius: 50%; /* Makes the image circular */
+      object-fit: cover; /* Ensures the image fits well in the circle */
+    }
+
+  .signup-container {
+    background: white;
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .signup-container h2 {
+    margin-bottom: 20px;
+    color: #800080; /* Purple for headings */
+  }
+
+  .input-container {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+
+  .input-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  .input-container input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+
+  .btn-signup {
+    background-color: #800080;
+    color: #fff;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  .btn-signup:hover {
+    background-color: #660066;
+  }
+
+  .login {
+    margin-top: 15px;
+    color: #555;
+  }
+
+  .login a {
+    color: #800080;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .login a:hover {
+    text-decoration: underline;
+  }
+
+  .social-login {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .social-login img {
+    margin: 0 10px;
+    cursor: pointer;
+  }
+
+  /* Footer styling */
+  footer {
+    background-color: #00214D; /* Dark blue */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+  }

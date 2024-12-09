@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login or Signup</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'users/css/login_style.css' %}">
+</head>
+<body>
+  <header>
+    <img src="./images/WhatsApp Image 2024-11-28 at 15.52.08_30ac69a9.jpg" alt="Company Logo"> <!-- Add the path to your logo -->
+    Login
+  </header>
+
+  <div class="login-container">
+    <h2>Welcome Back!</h2>
+
+    <div class="input-container">
+      <label for="email">Email</label>
+      <input type="text" id="email" placeholder="Enter your email">
+    </div>
+
+    <div class="input-container" style="position: relative;">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password">
+    </div>
+
+    <button class="btn-login">Log In</button>
+
+    <div class="signup">
+      Don't have an account? <a href="{% url 'register' %}">Sign up</a>
+    </div>
+
+    <div class="social-login">
+      <img src="./images/icons8-facebook-48.png" alt="Facebook" width="30" onclick="location.href='https://facebook.com'">
+      <img src="./images/google.png" alt="Google" width="30" onclick="location.href='https://google.com'">
+    </div>
+  </div>
+  
+
+</body>
+</html>

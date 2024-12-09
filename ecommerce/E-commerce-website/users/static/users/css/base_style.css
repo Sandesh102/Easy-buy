@@ -1,0 +1,57 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.navbar-custom {
+    background-color: #6a1b9a;
+    color: white;
+    padding: 5px 10px;
+}
+.navbar-brand img {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+.navbar-nav .nav-link {
+    color: white;
+    font-size: 15px;
+    padding: 10px 15px; 
+    font-weight: bold; 
+}
+.navbar-nav .nav-link:hover {
+    text-decoration: underline;
+}
+.form-control {
+    border-radius: 5px;
+    height: 35px;
+    font-size: 14px;
+}
+.btn-search {
+    background-color: white;
+    color: #6a1b9a;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+.btn-search:hover {
+    background-color: #f4f4f4;
+}
+.icon-bar img {
+    height: 30px;
+    width: 30px;
+}
+.icon-bar a {
+    margin-left: 10px;
+}
+.extra-links {
+    margin-right: 15px;
+    font-size: 14px;
+}
+.extra-links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+}
+.extra-links a:hover {
+    text-decoration: underline;
+}

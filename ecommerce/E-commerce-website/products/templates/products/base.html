@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yadav Cosmetics</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'products/css/base_style.css' %}"> 
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="{% static 'products/images/yadav.jpg' %}" alt="Yadav Cosmetics Logo">
+                <span class="ms-2">Yadav Cosmetics</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'products' %}">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">🔒 Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">📝 Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cart' %}">🛒 Cart</a>
+                    </li>
+                </ul>
+                <div class="extra-links d-flex align-items-center">
+                    <a href="#download">Download App</a>
+                    <a href="#help">Help and Support</a>
+                </div>
+                <form class="d-flex me-2" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-search" type="submit">Search</button>
+                </form>
+                <div class="icon-bar d-flex align-items-center">
+                    <a href="https://www.facebook.com/profile.php?id=61560067139161" target="_blank">
+                        <img src="./images/icons8-facebook-48.png" alt="Facebook">
+                    </a>
+                    <a href="https://www.instagram.com/prsnna.69/" target="_blank">
+                        <img src="./images/icons8-instagram-50.png" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block start %}
+    {% endblock %}
+      <footer style="background-color: #001a42; color: white; padding: 20px 0;">
+        <div style="max-width: 1200px; margin: auto; display: flex; justify-content: space-between; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 250px; margin: 10px;">
+            <h3 style="font-weight: bold; margin-bottom: 10px;">About Us</h3>
+            <p style="line-height: 1.6;">
+              Yadav Cosmetics was born in 2014. A beauty brand store is one of the first in Nepal. Yadav Cosmetics has grown to become the largest Nepali beauty retailer and the premier beauty destination for those looking for killer makeup without killing their wallet.
+            </p>
+            <div style="margin-top: 10px;">
+              <a href="#" style="margin-right: 10px;"><img src="{% static 'products/images/facebook.jpg' %}" alt="Facebook" style="width: 80px;"></a>
+              <a href="#" style="margin-right: 10px;"><img src="{% static 'products/images/instagram.jpg' %}" alt="Instagram" style="width: 100px;"></a>
+              
+            </div>
+          </div>
+      
+          <div style="flex: 1; min-width: 250px; margin: 10px;">
+            <h3 style="font-weight: bold; margin-bottom: 10px;">Store Information</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.6;">
+              <li>Trademall, Pokhara (+977-9814150244)</li>
+              <li>Baneshwor, Kathmandu</li>
+              <li>Putali Line, Dharan</li>
+              <li>Kumaripati, Kathmandu</li>
+            </ul>
+            <p style="margin-top: 10px;"><strong>Phone:</strong> +977-9813319958</p>
+            <p><strong>Email:</strong> yadavcosmetics@gmail.com</p>
+          </div>
+      
+      
+          <div style="flex: 1; min-width: 250px; margin: 10px;">
+            <h3 style="font-weight: bold; margin-bottom: 10px;">Help & Support</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.6;">
+              <li><a href="#" style="color: white; text-decoration: none;">FAQs</a></li>
+              <li><a href="#" style="color: white; text-decoration: none;">Wishlist</a></li>
+              <li><a href="#" style="color: white; text-decoration: none;">My Account</a></li>
+              <li><a href="#" style="color: white; text-decoration: none;">🛒 My Cart</a></li>
+              <li><a href="#" style="color: white; text-decoration: none;">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px; border-top: 1px solid #ccc; padding-top: 10px;">
+          <p style="margin: 0;">&copy; 2024 Yadav Cosmetics</p>
+        </div>
+      </footer>
+      
+    
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

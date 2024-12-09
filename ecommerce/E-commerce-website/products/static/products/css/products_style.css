@@ -1,0 +1,28 @@
+.discount-banner {
+    background-color: #f8d7da;
+    color: #dc3545;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 0;
+  }
+  
+  .product-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    text-align: center;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .product-card h5 {
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  

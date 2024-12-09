@@ -1,0 +1,28 @@
+body {
+    background-color: #f8f9fa;
+}
+.btn-custom {
+    background-color: rgb(106, 27, 154);
+    color: white;
+}
+.btn-custom:hover {
+    background-color: rgba(106, 27, 154, 0.9);
+}
+.price {
+    color: rgb(106, 27, 154);
+    font-weight: bold;
+}
+.original-price {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+.item-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.order-summary {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+}
