@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings  # Import settings to reference the user model
 from django.utils.text import slugify
-
+from django.contrib.auth.models import User
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=120, unique=True, blank=True)
@@ -22,7 +22,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
-    image = models.ImageField(upload_to="products/images/", blank=True, null=True)
+    image = models.ImageField(upload_to="products/images/", blank=True, null=True,default="products/images/default.png")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -46,13 +46,18 @@ class Review(models.Model):
         return f"{self.user.username} - {self.product.name} - {self.rating}"
 
 
+from django.db import models
+from django.contrib.auth.models import User
+from .models import Product  # Assuming you have a Product model
+
 class CartItem(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="cart_items")
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="cart_items")
-    quantity = models.PositiveIntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)  # Default to 1 if no quantity is provided
 
     def __str__(self):
-        return f"{self.user.username} - {self.product.name} - {self.quantity}"
+        return f"{self.product.name} - {self.quantity} in cart"
+
 
 
 class Wishlist(models.Model):
@@ -64,10 +69,11 @@ class Wishlist(models.Model):
 
 
 class Order(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders")  # Use settings.AUTH_USER_MODEL
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="orders")
     delivery_address = models.TextField()
     phone_number = models.CharField(max_length=15)
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_proof = models.FileField(upload_to='products/payment', null=True, blank=True)  # Allow null for testing
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     status = models.CharField(
@@ -79,8 +85,9 @@ class Order(models.Model):
             ('Delivered', 'Delivered'),
             ('Cancelled', 'Cancelled'),
         ],
-        default='Pending'
+        default='Pending',
     )
 
     def __str__(self):
         return f"Order {self.id} by {self.user.username}"
+

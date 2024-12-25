@@ -5,49 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up</title>
   {% load static %}
-  <link rel="stylesheet" href="{% static 'users/css/register_style.css' %}">  
+  <link rel="stylesheet" href="{% static 'users/css/register_style.css' %}">
 </head>
 <body>
   <header>
-    <img src="./images/WhatsApp Image 2024-11-28 at 15.52.08_30ac69a9.jpg" alt="Company Logo">
+    <img src="{% static 'users/images/WhatsApp_Image.jpg' %}" alt="Company Logo">
     Sign Up
   </header>
 
   <div class="signup-container">
     <h2>Create Your Account</h2>
 
-    <div class="input-container">
-      <label for="fname">First Name</label>
-      <input type="text" id="fname" placeholder="Enter your first name" name="first_name">
-    </div>
-    <div class="input-container">
-      <label for="lname">Last Name</label>
-      <input type="text" id="lname" placeholder="Enter your Last name" name="last_name">
-    </div>
-    <div class="input-container">
-      <label for="email">Email</label>
-      <input type="text" id="email" placeholder="Enter your email" name="email">
-    </div>
+    <!-- Add form tag -->
+    <form method="POST" action="{% url 'register' %}">
+      {% csrf_token %}
+      
+      <div class="input-container">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" placeholder="Enter your first name" name="first_name">
+      </div>
 
-    <div class="input-container">
-      <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Create a password" name="password">
-    </div>
+      <div class="input-container">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" placeholder="Enter your Last name" name="last_name">
+      </div>
 
-    <div class="input-container">
-      <label for="confirm-password">Confirm Password</label>
-      <input type="password" id="confirm-password" placeholder="Confirm your password" name="cpassword">
-    </div>
+      <div class="input-container">
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="Enter your email" name="email">
+      </div>
 
-    <button class="btn-signup">Sign Up</button>
+      <div class="input-container">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Create a password" name="password">
+      </div>
 
+      <div class="input-container">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" placeholder="Confirm your password" name="cpassword">
+      </div>
+
+      <button class="btn-signup" type="submit">Sign Up</button>
+    </form>
+    
     <div class="login">
       Already have an account? <a href="{% url 'login' %}">Log in</a>
     </div>
 
     <div class="social-login">
-      <img src="./images/icons8-facebook-48.png" alt="Facebook" width="30" onclick="location.href='https://facebook.com'">
-      <img src="./images/google.png" alt="Google" width="30" onclick="location.href='https://google.com'">
+      <img src="{% static 'users/images/icons8-facebook-48.png' %}" alt="Facebook" width="30" onclick="location.href='https://facebook.com'">
+      <img src="{% static 'users/images/google.png' %}" alt="Google" width="30" onclick="location.href='https://google.com'">
     </div>
   </div>
 </body>

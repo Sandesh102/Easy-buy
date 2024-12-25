@@ -1,63 +1,22 @@
 {% extends 'products/base.html' %}
 {% load static %}
 {% block start %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yadav Cosmetics</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'products/css/products_style.css' %}">
-</head>
-<body>
-
-  <div class="discount-banner">
-    40% flat discount on every product
-  </div>
-
-  {#  <div class="container py-4">
-    <h1 class="text-center mb-4">Yo chai products page ho hai aaile ko lagi</h1>
-    <div class="row g-4">
-      {% for product in products|slice:":8" %}
-        <div class="col-6 col-md-4 col-lg-3 d-flex">
-          <div class="product-card">
-            {% if product.image %}
-              <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-            {% else %}
-              <img src="{% static 'images/default_product_image.jpg' %}" alt="Default image" class="product-image">
-            {% endif %}
-            <div class="product-details">
-              <h5 class="product-name">{{ product.name }}</h5>
-              <p class="product-price">Rs: {{ product.price }}</p>
-              <a href="#" class="btn btn-primary btn-sm w-100">Add to Cart</a>
-            </div>
-          </div>
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'products/css/products_style.css' %}">
+  </head>
+  <body>
+    <div class="product-grid">
+      {% for i in products %}
+      <a href="{% url 'product_detail' i.slug %}" class="product-link">
+        <div class="product">
+          <img src="{{ i.image.url }}" alt="{{ i.name }}">
+          <h3>{{ i.name }}</h3>
+          <p class="price">{{ i.price }}</p>
         </div>
-      {% empty %}
-        <p class="text-center">No products available</p>
+      </a>
       {% endfor %}
     </div>
-  </div>  #}
-  <div class="container py-4">
-    <div class="row g-3">
-      {% for product in Products%}
-      <div class="col-6 col-md-4 col-lg-3">
-        <div class="product-card">
-          {% if product.image %}
-              <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-            {% else %}
-              <img src="{% static 'images/default_product_image.jpg' %}" alt="Default image" class="product-image">
-            {% endif %}
-          <h5>Facial Powder</h5>
-          <p>Rs: 550</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>
 {% endblock %}

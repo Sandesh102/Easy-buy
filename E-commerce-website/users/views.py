@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-
+from django.contrib.auth import authenticate, login as auth_login, logout
 def register(request):
     if request.method == "POST":
         first_name = request.POST.get('first_name')
@@ -32,4 +32,16 @@ def register(request):
     return render(request, 'users/register.html')
 
 def login(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        user = authenticate(request, username=email, password=password)
+        
+        if user is not None:
+            auth_login(request, user)
+            messages.success(request, "Logged in successfully.")
+            return redirect('homepage')  # Redirect to homepage after login
+        else:
+            messages.error(request, "Invalid email or password.")
+    
     return render(request, 'users/login.html')

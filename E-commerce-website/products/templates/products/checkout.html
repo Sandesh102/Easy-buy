@@ -1,0 +1,91 @@
+{% load custom_filters %}
+{% load static %}
+
+{% block content %}
+<div class="container py-4">
+    <h2>Checkout</h2>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h5>Your Cart</h5>
+            {% if cart_items %}
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>Rs. {{ item.product.price }}</td>
+                            <td>Rs. {{ item.product.price|multiply:item.quantity }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Your cart is empty.</p>
+            {% endif %}
+        </div>
+
+        <div class="col-md-4">
+            <h5>Order Summary</h5>
+            <div class="mb-3">
+                <strong>Subtotal ({{ cart_items|length }} items):</strong>
+                <span>Rs. {{ total_price }}</span>
+            </div>
+            <div class="mb-3">
+                <strong>Shipping Fee:</strong>
+                <span>Rs. 0</span>
+            </div>
+            <hr>
+            <div class="mb-3">
+                <strong>Total:</strong>
+                <span>Rs. {{ total_price }}</span>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <h5>Delivery Information</h5>
+                <div class="form-group">
+                    {{ form.delivery_address.label_tag }}
+                    {{ form.delivery_address }}
+                </div>
+                <div class="form-group">
+                    {{ form.phone_number.label_tag }}
+                    {{ form.phone_number }}
+                </div>
+            
+                <h5>Payment</h5>
+                <!-- Display QR Code -->
+                {% if qr_code_path %}
+                    <div class="mb-3">
+                        <strong>Payment QR Code:</strong>
+                        <div>
+                            <img src="{% static 'products/images/qr.jpg' %}" alt="QR Code" class="img-thumbnail" width="150">
+                        </div>
+                    </div>
+                {% else %}
+                    <p>QR code not available.</p>
+                {% endif %}
+            
+                <!-- Upload Payment Proof -->
+                <div class="form-group">
+                    <label for="payment_proof">Upload Payment Proof</label>
+                    <input type="file" name="payment_proof" id="payment_proof" class="form-control" required>
+                </div>
+            
+                <button type="submit" class="btn btn-primary w-100">Submit</button>
+            </form>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

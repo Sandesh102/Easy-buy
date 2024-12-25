@@ -1,27 +1,61 @@
-.discount-banner {
-  background-color: #f8d7da;
-  color: #dc3545;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 10px 0;
+
+
+/* Grid container */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
 }
 
-.product-card {
+/* Individual product card */
+.product {
+  background: #979292;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 10px;
   overflow: hidden;
   text-align: center;
   padding: 10px;
-  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 280px; /* Set a smaller height */
 }
 
-.product-card img {
-  width: 100%;
-  height: auto;
+/* Image container */
+.product img {
+  max-width: 100%;
+  max-height: 150px; /* Restrict image height */
+  object-fit: contain; /* Ensure image scales proportionally */
+  margin: 0 auto;
+  display: block;
 }
 
-.product-card h5 {
-  font-size: 1.2rem;
+/* Product title */
+.product h3 {
+  font-size: 14px;
   margin: 10px 0;
+  flex-grow: 1; /* Ensures proper spacing */
+}
+
+/* Price and discount */
+.price {
+  color: #ff5722;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.discount {
+  color: #4caf50;
+  font-size: 14px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  .product {
+      height: 250px; /* Slightly reduced height for smaller screens */
+  }
 }
