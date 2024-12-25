@@ -2,15 +2,16 @@
 {% load static %}
 
 {% block content %}
-<div class="container py-4">
-    <h2>Checkout</h2>
+<div class="container py-4" style="max-width: 900px; margin: 0 auto; font-family: Arial, sans-serif;">
+    <h2 style="text-align: center; color: #6A1B9A; font-size: 30px;">Checkout</h2>
 
     <div class="row">
+        <!-- Cart Items -->
         <div class="col-md-8">
-            <h5>Your Cart</h5>
+            <h5 style="color: #6A1B9A; border-bottom: 2px solid #6A1B9A; padding-bottom: 10px;">Your Cart</h5>
             {% if cart_items %}
-                <table class="table table-striped">
-                    <thead>
+                <table class="table table-striped" style="font-size: 16px; color: #555; border-radius: 8px;">
+                    <thead style="background-color: #6A1B9A; color: white;">
                         <tr>
                             <th>Product</th>
                             <th>Quantity</th>
@@ -34,58 +35,105 @@
             {% endif %}
         </div>
 
+        <!-- Order Summary -->
         <div class="col-md-4">
-            <h5>Order Summary</h5>
-            <div class="mb-3">
+            <h5 style="color: #6A1B9A; border-bottom: 2px solid #6A1B9A; padding-bottom: 10px;">Order Summary</h5>
+            <div class="mb-3" style="font-size: 16px;">
                 <strong>Subtotal ({{ cart_items|length }} items):</strong>
                 <span>Rs. {{ total_price }}</span>
             </div>
-            <div class="mb-3">
+            <div class="mb-3" style="font-size: 16px;">
                 <strong>Shipping Fee:</strong>
                 <span>Rs. 0</span>
             </div>
-            <hr>
-            <div class="mb-3">
+            <hr style="border: 1px solid #6A1B9A;">
+            <div class="mb-3" style="font-size: 16px;">
                 <strong>Total:</strong>
                 <span>Rs. {{ total_price }}</span>
             </div>
 
-            <form method="POST" enctype="multipart/form-data">
+            <!-- Delivery and Payment Form -->
+            <form method="POST" enctype="multipart/form-data" style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
                 {% csrf_token %}
-                
-                <h5>Delivery Information</h5>
-                <div class="form-group">
+
+                <h5 style="color: #6A1B9A;">Delivery Information</h5>
+                <div class="form-group" style="margin-bottom: 15px;">
                     {{ form.delivery_address.label_tag }}
                     {{ form.delivery_address }}
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 15px;">
                     {{ form.phone_number.label_tag }}
                     {{ form.phone_number }}
                 </div>
             
-                <h5>Payment</h5>
+                <h5 style="color: #6A1B9A;">Payment</h5>
                 <!-- Display QR Code -->
                 {% if qr_code_path %}
-                    <div class="mb-3">
+                    <div class="mb-3" style="font-size: 16px;">
                         <strong>Payment QR Code:</strong>
-                        <div>
-                            <img src="{% static 'products/images/qr.jpg' %}" alt="QR Code" class="img-thumbnail" width="150">
+                        <div style="text-align: center;">
+                            <img src="{% static 'products/images/qr.jpg' %}" alt="QR Code" class="img-thumbnail" width="150" style="border: 3px solid #6A1B9A; padding: 10px;">
                         </div>
                     </div>
                 {% else %}
-                    <p>QR code not available.</p>
+                    <p style="font-size: 16px;">QR code not available.</p>
                 {% endif %}
             
                 <!-- Upload Payment Proof -->
-                <div class="form-group">
-                    <label for="payment_proof">Upload Payment Proof</label>
-                    <input type="file" name="payment_proof" id="payment_proof" class="form-control" required>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="payment_proof" style="color: #6A1B9A;">Upload Payment Proof</label>
+                    <input type="file" name="payment_proof" id="payment_proof" class="form-control" required style="border: 1px solid #6A1B9A; border-radius: 5px;">
                 </div>
             
-                <button type="submit" class="btn btn-primary w-100">Submit</button>
+                <button type="submit" class="btn" style="background-color: #6A1B9A; color: white; width: 100%; padding: 10px; border-radius: 5px; font-size: 16px;">Submit</button>
             </form>
-            
         </div>
     </div>
 </div>
+
+<style>
+    /* Style the table for better presentation */
+    .table-striped tbody tr:nth-child(odd) {
+        background-color: #f4f4f4;
+    }
+
+    .table-striped th, .table-striped td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* Adjust the delivery address input field */
+    .form-group textarea {
+        font-size: 16px;
+        border: 1px solid #6A1B9A;
+        border-radius: 5px;
+        padding: 8px;
+        resize: none;
+        height: 100px; /* Adjusted height for better user experience */
+    }
+
+    .form-control {
+        font-size: 16px;
+        border: 1px solid #6A1B9A;
+        border-radius: 5px;
+        padding: 8px;
+    }
+
+    .btn {
+        background-color: #6A1B9A;
+        color: white;
+        padding: 12px;
+        text-align: center;
+        font-size: 16px;
+        text-decoration: none;
+        border-radius: 5px;
+        border: none;
+    }
+
+    .btn:hover {
+        background-color: #512D6D;
+    }
+</style>
+
 {% endblock %}

@@ -3,8 +3,8 @@ from .models import Category, Product, Review, CartItem, Wishlist, Order
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'slug')
-    prepopulated_fields = {'slug': ('name',)}
+    list_display = ('name',)
+    
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):

@@ -1,14 +1,13 @@
-
+from products.models import Category, Product,CartItem
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render,redirect
-from .models import Product,CartItem
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.conf import settings
 import qrcode
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
-from .models import CartItem, Product
+
 from .forms import *
 # @login_required(login_url='login')
 def homepage(request):
@@ -32,8 +31,31 @@ def detail(request, slug):
     return render(request, 'products/detail.html', {'product': product})
     
 def category(request):
-    return render(request,'products/category.html')
+    categories = Category.objects.all()  # Get all categories
 
+    # Filter products based on category and price range
+    products = Product.objects.all()
+
+    # Filter by category if selected
+    category_id = request.GET.get('category')
+    if category_id:
+        products = products.filter(category_id=category_id)
+
+    # Filter by min price if provided
+    min_price = request.GET.get('min_price')
+    if min_price:
+        products = products.filter(price__gte=min_price)
+
+    # Filter by max price if provided
+    max_price = request.GET.get('max_price')
+    if max_price:
+        products = products.filter(price__lte=max_price)
+
+    # Pass the filtered products and categories to the template
+    return render(request, 'products/category.html', {
+        'categories': categories,
+        'products': products
+    })
 
 @login_required
 def add_to_cart(request, product_id):

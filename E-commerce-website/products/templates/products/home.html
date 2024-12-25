@@ -11,8 +11,8 @@
       <a href="{% url 'product_detail' i.slug %}" class="product-link">
         <div class="product">
           <img src="{{ i.image.url }}" alt="{{ i.name }}">
-          <h3>{{ i.name }}</h3>
-          <p class="price">{{ i.price }}</p>
+          <h2>{{ i.name }}</h2>
+          <p class="price">Rs{{ i.price }}</p>
         </div>
       </a>
       {% endfor %}

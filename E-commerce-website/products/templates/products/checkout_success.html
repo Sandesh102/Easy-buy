@@ -1,39 +1,120 @@
-
 {% load static %}
 
 {% block content %}
-<div class="container py-4">
-    <h2>Checkout Successful</h2>
-    <p>Thank you for your purchase! Your order has been successfully placed.</p>
+<div class="container py-4" style="max-width: 900px; margin: 0 auto; font-family: Arial, sans-serif;">
+    <!-- Title -->
+    <h2 style="text-align: center; color: #6A1B9A; font-size: 30px; margin-bottom: 20px;">Checkout Successful</h2>
+    <p style="text-align: center; font-size: 18px; color: #555;">Thank you for your purchase! Your order has been successfully placed.</p>
 
-    <h5>Order Summary</h5>
-    <ul>
-        <li><strong>Order ID:</strong> {{ order.id }}</li>
-        <li><strong>Delivery Address:</strong> {{ order.delivery_address }}</li>
-        <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
-        <li><strong>Total Price:</strong> Rs. {{ order.total_price }}</li>
-        <li><strong>Status:</strong> {{ order.status }}</li>
-    </ul>
+    <!-- Order Summary -->
+    <div class="order-summary" style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h5 style="color: #6A1B9A; border-bottom: 2px solid #6A1B9A; padding-bottom: 10px;">Order Summary</h5>
+        <ul style="font-size: 16px; color: #555;">
+            <li><strong>Order ID:</strong> {{ order.id }}</li>
+            <li><strong>Delivery Address:</strong> {{ order.delivery_address }}</li>
+            <li><strong>Phone Number:</strong> {{ order.phone_number }}</li>
+            <li><strong>Total Price:</strong> Rs. {{ order.total_price }}</li>
+            <li><strong>Status:</strong> {{ order.status }}</li>
+        </ul>
+    </div>
 
-    <h5>Payment Details</h5>
-    {% if order.payment_proof %}
-        <p><strong>Payment Proof Uploaded:</strong> Yes</p>
-        <p><a href="{{ order.payment_proof.url }}" target="_blank" class="btn btn-secondary">View Payment Proof</a></p>
-    {% else %}
-        <p><strong>Payment Proof Uploaded:</strong> No</p>
-    {% endif %}
+    <!-- Payment Details -->
+    <div class="payment-details" style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;">
+        <h5 style="color: #6A1B9A; border-bottom: 2px solid #6A1B9A; padding-bottom: 10px;">Payment Details</h5>
+        {% if order.payment_proof %}
+            <p style="font-size: 16px; color: #555;"><strong>Payment Proof Uploaded:</strong> Yes</p>
+            <p><a href="{{ order.payment_proof.url }}" target="_blank" class="btn" style="background-color: #6A1B9A; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">View Payment Proof</a></p>
+        {% else %}
+            <p style="font-size: 16px; color: #555;"><strong>Payment Proof Uploaded:</strong> No</p>
+        {% endif %}
+    </div>
 
-    <h5>QR Code</h5>
-    {% if qr_code_path %}
-        <div>
-            <img src="{{ qr_code_path }}" alt="QR Code" class="img-thumbnail" width="150">
-        </div>
-        <p><a href="{{ qr_code_path }}" download class="btn btn-primary mt-3">Download QR Code</a></p>
-    {% else %}
-        <p>No QR code available for this order.</p>
-    {% endif %}
-
-    {#  <a href="{% url 'order_history' %}" class="btn btn-primary mt-3">View Order History</a>  #}
-    {#  <a href="{% url 'shop' %}" class="btn btn-secondary mt-3">Continue Shopping</a>  #}
+    <!-- QR Code Section -->
+    <div class="qr-code-section" style="background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); margin-top: 20px;">
+        <h5 style="color: #6A1B9A; border-bottom: 2px solid #6A1B9A; padding-bottom: 10px;">QR Code</h5>
+        {% if qr_code_path %}
+            <div style="text-align: center;">
+                <img src="{% static 'products/images/qr.jpg' %}" alt="QR Code" class="img-thumbnail" width="150" style="border: 3px solid #6A1B9A; padding: 10px;">
+            </div>
+            <p style="text-align: center; margin-top: 10px;">
+                <a href="{% static 'products/images/qr.jpg' %}" download class="btn" style="background-color: #6A1B9A; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px;">Download QR Code</a>
+            </p>
+        {% else %}
+            <p style="font-size: 16px; color: #555;">No QR code available for this order.</p>
+        {% endif %}
+    </div>
 </div>
+
+<style>
+    /* Style the page */
+    .container {
+        font-family: Arial, sans-serif;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    h2 {
+        text-align: center;
+        color: #6A1B9A;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    h5 {
+        color: #6A1B9A;
+        border-bottom: 2px solid #6A1B9A;
+        padding-bottom: 10px;
+        font-size: 20px;
+    }
+
+    .order-summary,
+    .payment-details,
+    .qr-code-section {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+    }
+
+    .btn {
+        background-color: #6A1B9A;
+        color: white;
+        padding: 10px 15px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+
+    .btn:hover {
+        background-color: #512D6D;
+    }
+
+    /* Style the order summary and payment details */
+    ul {
+        font-size: 16px;
+        color: #555;
+    }
+
+    ul li {
+        margin-bottom: 10px;
+    }
+
+    .payment-details p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    /* QR Code section styling */
+    .qr-code-section img {
+        border: 3px solid #6A1B9A;
+        padding: 10px;
+    }
+
+    .qr-code-section p {
+        text-align: center;
+        margin-top: 10px;
+    }
+</style>
+
 {% endblock %}

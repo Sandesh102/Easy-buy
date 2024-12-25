@@ -2,14 +2,13 @@ from django.db import models
 from django.conf import settings  # Import settings to reference the user model
 from django.utils.text import slugify
 from django.contrib.auth.models import User
-class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    slug = models.SlugField(max_length=120, unique=True, blank=True)
+from django.utils import timezone  # Add this import
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=250, unique=True, blank=True)
+    description = models.TextField(null=True,blank=True)
+    
 
     def __str__(self):
         return self.name
@@ -22,7 +21,7 @@ class Product(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
     stock = models.PositiveIntegerField()
-    image = models.ImageField(upload_to="products/images/", blank=True, null=True,default="products/images/default.png")
+    image = models.ImageField(upload_to="products/images/", blank=True, null=True, default="products/images/default.png")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
