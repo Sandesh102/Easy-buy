@@ -1,5 +1,5 @@
 {% extends "products/base.html" %}
-
+{% load static %}
 {% block start %}
 <div class="container my-5">
     <div class="card shadow p-4">
@@ -20,7 +20,7 @@
                 </p>
                 <h4 class="text-danger">Rs. 2,890</h4>
                 <form method="POST" action="#">
-                    {% csrf_token %}
+                    
                     <div class="d-flex align-items-center mb-4">
                         <label for="quantity" class="me-3">Quantity:</label>
                         <input type="number" id="quantity" name="quantity" min="1" value="1" class="form-control w-25">
