@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login as auth_login, logout
+from django.contrib.auth import logout as auth_logout
 def register(request):
     if request.method == "POST":
         first_name = request.POST.get('first_name')
@@ -45,3 +46,8 @@ def login(request):
             messages.error(request, "Invalid email or password.")
     
     return render(request, 'users/login.html')
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect('login')  # Redirect to login page after logout

@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 
 from .forms import *
-# @login_required(login_url='login')
+@login_required(login_url='login')
 def homepage(request):
     products= Product.objects.all()  
     return render(request,'products/home.html', {'products': products})  
