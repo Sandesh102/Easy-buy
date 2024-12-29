@@ -111,3 +111,11 @@ body {
     padding: 10px 0;
     margin-top: 20px;
   }
+  .signup-container {
+    background-image: url('../images/back.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Makes the image cover the entire container */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    padding: 20px; /* Adds padding around the content */
+    color: white; /* Changes text color for contrast, if needed */
+}
