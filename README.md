@@ -1,75 +1,85 @@
-Step 1: Clone the Repository(Only few members may have access to the repo so we cannot clone from every github account)
-# Clone the repository to your local machine
+Ecommerce App Setup Guide
+Clone the Repository
+
+To get started, clone the repository to your local machine:
 git clone https://github.com/XDezoTech/ecommerce-app.git
 cd ecommerce-app
+Install Python Dependencies
+[asgiref==3.8.1
+colorama==0.4.6
+Django==5.1.4
+mysqlclient==2.2.6
+pillow==11.0.0
+qrcode==8.0
+sqlparse==0.5.3
+tzdata==2024.2
+]
+If you encounter an issue with pip not being found, ensure that Python is added to your system PATH.
 
-Step 2: Install Python Dependencies
 
-      Create and activate a virtual environment:
-      
-      Linux/macOS:
-      
-      python3 -m venv venv
-      source venv/bin/activate
-      
-      Windows:
-      
-      python -m venv venv
-      venv\Scripts\activate
-      
-      Install the required Python packages:
-      
-      pip install -r requirements.txt
-      
-      Note: If pip is not found, ensure Python is added to your system PATH.
-      
-      Install additional dependencies if needed:
-      
-      Linux/macOS:
-      
-      sudo apt-get install python3-dev libmysqlclient-dev
-      pip install mysqlclient
-      
-      Windows:
-      
-      pip install mysqlclient
-      
-      Ensure Pillow is installed:
-      Pillow is listed in requirements.txt and is installed with other dependencies. If it’s missing, install manually:
-      
-      pip install pillow
 
-Step 3: Configure the Database
+Create and Activate a Virtual Environment
 
-     Install the required Python packages:
-     
-     pip install -r requirements.txt
-     
-     Note: If pip is not found, ensure Python is added to your system PATH.
-     
-     Here are the key dependencies included in requirements.txt:
-     
-     Django: Web framework
-     
-     mysqlclient: MySQL database connector
-     
-     Pillow: For handling media files
+For Linux/macOS:
+python3 -m venv venv
+source venv/bin/activate
 
-Step 4: Set Up the Application
 
-    Apply database migrations:
-    
-    python manage.py migrate
-    
-    Create a superuser to access the admin panel:
-    
-    python manage.py createsuperuser
-    
+For Windows:
+python -m venv venv
+venv\Scripts\activate
 
-Step 5: Run the Development Server
 
-    Start the server using the following command:
-    
-    python manage.py runserver
-    
-    Access the application at http://127.0.0.1:8000.
+
+MySQL Configuration (Default)
+
+To use MySQL, update the DATABASES settings in settings.py with your credentials:
+
+python
+Copy code
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'your_database_name',  # Replace with your MySQL database name
+        'USER': 'your_mysql_user',  # Replace with your MySQL username
+        'PASSWORD': 'your_mysql_password',  # Replace with your MySQL password
+        'HOST': 'localhost',  # Keep as localhost or replace with your MySQL host if remote
+        'PORT': '3306',  # Default MySQL port
+    }
+}
+SQLite Configuration (If using SQLite)
+
+If you want to switch to SQLite, update DATABASES in settings.py like this:
+
+python
+Copy code
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+Set Up the Application
+
+TO import data ,run following command
+  python manage.py loaddata data.json
+
+Apply Database Migrations
+
+Run the following command to apply migrations and set up the database:
+
+python manage.py migrate
+Create a Superuser
+
+To access the Django admin panel, create a superuser by running:
+
+python manage.py createsuperuser
+Follow the prompts to set up the superuser credentials.
+
+Run the Development Server
+
+Start the Django development server:
+
+python manage.py runserver
+You can now access the application at http://127.0.0.1:8000.
+
